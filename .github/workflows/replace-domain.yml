@@ -1,0 +1,53 @@
+name: Replace Hosting Domain
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  replace-domain:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Replace domain
+        run: |
+          python3 - <<'PY'
+          import os
+
+          old = "hosting.gestontech.online"
+          new = "gestonx.gestontech.online"
+
+          for root, dirs, files in os.walk("."):
+              dirs[:] = [
+                  d for d in dirs
+                  if d not in [".git", "node_modules", "dist", "build"]
+              ]
+
+              for file in files:
+                  path = os.path.join(root, file)
+                  try:
+                      with open(path, "r", encoding="utf-8") as f:
+                          content = f.read()
+
+                      updated = content.replace(old, new)
+
+                      if updated != content:
+                          with open(path, "w", encoding="utf-8") as f:
+                              f.write(updated)
+                          print(f"Updated: {path}")
+                  except (UnicodeDecodeError, OSError):
+                      pass
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Replace hosting domain with gestonx domain"
+          git push
