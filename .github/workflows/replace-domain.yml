@@ -1,3 +1,4 @@
+
 name: Replace Hosting Domain
 
 on:
@@ -8,46 +9,86 @@ permissions:
 
 jobs:
   replace-domain:
+    name: Replace old domain
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Replace domain
+      - name: Replace domain in text files
+        shell: bash
         run: |
-          python3 - <<'PY'
-          import os
+          python3 <<'PY'
+          from pathlib import Path
 
           old = "hosting.gestontech.online"
           new = "gestonx.gestontech.online"
 
-          for root, dirs, files in os.walk("."):
-              dirs[:] = [
-                  d for d in dirs
-                  if d not in [".git", "node_modules", "dist", "build"]
-              ]
+          excluded = {
+              ".git",
+              "node_modules",
+              "dist",
+              "build",
+              ".next",
+              ".vercel",
+              "coverage"
+          }
 
-              for file in files:
-                  path = os.path.join(root, file)
-                  try:
-                      with open(path, "r", encoding="utf-8") as f:
-                          content = f.read()
+          extensions = {
+              ".ts", ".tsx", ".js", ".jsx",
+              ".json", ".html", ".css", ".scss",
+              ".md", ".txt", ".yml", ".yaml",
+              ".env.example", ".xml", ".svg"
+          }
 
-                      updated = content.replace(old, new)
+          changed = []
 
-                      if updated != content:
-                          with open(path, "w", encoding="utf-8") as f:
-                              f.write(updated)
-                          print(f"Updated: {path}")
-                  except (UnicodeDecodeError, OSError):
-                      pass
+          for path in Path(".").rglob("*"):
+              if not path.is_file():
+                  continue
+
+              if any(part in excluded for part in path.parts):
+                  continue
+
+              if path.suffix.lower() not in extensions:
+                  continue
+
+              try:
+                  content = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+
+              updated = content.replace(old, new)
+
+              if updated != content:
+                  path.write_text(updated, encoding="utf-8")
+                  changed.append(str(path))
+
+          print("Files updated:")
+          for file in changed:
+              print(f"- {file}")
+
+          print(f"Total: {len(changed)} file(s)")
           PY
 
-      - name: Commit changes
+      - name: Check changes
         run: |
+          git diff --check
+          git diff --stat
+
+      - name: Commit and push changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add -A
-          git diff --cached --quiet || git commit -m "Replace hosting domain with gestonx domain"
-          git push
+          git commit -m "Replace hosting domain with GestonX domain"
+          git push origin HEAD:${GITHUB_REF_NAME}
