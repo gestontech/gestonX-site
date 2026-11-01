@@ -1,7 +1,7 @@
 {
-  "name": "geston-hosting",
+  "name": "gestonx",
   "description": "WhatsApp Bot Hosting Platform with TX Coins",
-  "repository": "https://github.com/gestontech/GestonX",
+  "repository": "https://github.com/gestontech/Geston-Hosting",
   "stack": "heroku-26",
   "buildpacks": [
     {
@@ -148,7 +148,7 @@
       "required": true
     },
     "SMTP_FROM": {
-      "description": "From address for login/reset emails. Defaults to GestonX <noreply@gestontech.online> if unset.",
+      "description": "From address for login/reset emails. Defaults to GESTONX <noreply@gestontech.online> if unset.",
       "required": false
     },
     "BOT_OWNER_ID": {
@@ -161,7 +161,7 @@
       "required": false
     },
     "T_NUMBERS": {
-      "description": "Comma-separated WhatsApp numbers (digits + country code) allowed unrestricted AI (any topic, still identifies as GestonX assistant). Not owner/admin powers. Example: 2547xxxxxxxx,2557xxxxxxxx",
+      "description": "Comma-separated WhatsApp numbers (digits + country code) allowed unrestricted AI (any topic, still identifies as GESTONX assistant). Not owner/admin powers. Example: 2547xxxxxxxx,2557xxxxxxxx",
       "required": false
     },
     "AI_MEMORY_TTL_HOURS": {
@@ -177,7 +177,7 @@
       "required": false
     },
     "BRAND_NAME": {
-      "description": "Platform display name used in AI assistant replies (default GestonX)",
+      "description": "Platform display name used in AI assistant replies (default GESTONX)",
       "required": false
     },
     "GEMINI_API_KEY": {

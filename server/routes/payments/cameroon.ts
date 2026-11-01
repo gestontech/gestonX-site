@@ -51,7 +51,7 @@ router.post("/initiate-cameroon", authGuard, banCheck, requirePaymentMethod("cam
       name: displayName,
       email: user.email,
       externalId,
-      message: `GestonX: ${totalTx} Coins top-up`
+      message: `GESTONX: ${totalTx} Coins top-up`
     });
     if (directResult.success && directResult.transId) {
       const tx = await Transaction.create({
@@ -73,7 +73,7 @@ router.post("/initiate-cameroon", authGuard, banCheck, requirePaymentMethod("cam
     const hostedResult = await initiateFapshiPayment({
       amount: xafAmount,
       externalId,
-      message: `GestonX: ${totalTx} Coins top-up`
+      message: `GESTONX: ${totalTx} Coins top-up`
     });
     if (!hostedResult.success || !hostedResult.transId || !hostedResult.paymentUrl) {
       res.status(500).json({ error: hostedResult.message || "Failed to initiate payment" });

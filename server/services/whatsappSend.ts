@@ -1,7 +1,7 @@
 import { logger } from "../logger.js";
 import { shouldSendInteractive } from "./waDevicePref.js";
 
-export const WA_WATERMARK = "Powerd by GestonX";
+export const WA_WATERMARK = "Powerd by GESTONX";
 export const WA_WATERMARK_LINE = "\n\n> " + WA_WATERMARK;
 
 type Sock = {
@@ -25,9 +25,9 @@ export function setWaSendSock(sock: Sock | null): void {
 
 function stripWatermark(text: string): string {
   let t = String(text || "");
-  t = t.replace(/\n\n> Powerd by GestonX\s*$/g, "");
-  t = t.replace(/\n> Powerd by GestonX\s*$/g, "");
-  t = t.replace(/Powerd by GestonX\s*$/g, "");
+  t = t.replace(/\n\n> Powerd by GESTONX\s*$/g, "");
+  t = t.replace(/\n> Powerd by GESTONX\s*$/g, "");
+  t = t.replace(/Powerd by GESTONX\s*$/g, "");
   return t.trimEnd();
 }
 

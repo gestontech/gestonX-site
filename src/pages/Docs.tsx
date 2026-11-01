@@ -280,7 +280,7 @@ export function Docs() {
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-5 relative z-[1]">
         <Reveal>
           <div className="rounded-2xl bg-gradient-to-br from-teal-500/10 to-orange-500/5 border border-teal-500/20 p-5">
-            <h2 className="font-bold text-lg mb-1">Documentation GestonX</h2>
+            <h2 className="font-bold text-lg mb-1">Documentation GESTONX</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Guides pour déployer des bots, gérer les panels, les paiements, et le dépannage. Vous ne trouvez pas votre réponse ? Contactez le support.
             </p>

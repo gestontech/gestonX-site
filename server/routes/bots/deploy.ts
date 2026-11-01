@@ -255,7 +255,7 @@ router.get("/template-appvars/:templateId", async (req: Request, res: Response) 
         const url = `https://raw.githubusercontent.com/${repoPath}/${branch}/app.json`;
         const r = await fetch(url, {
           signal: AbortSignal.timeout(10000),
-          headers: { Accept: "application/json", "User-Agent": "GestonX" },
+          headers: { Accept: "application/json", "User-Agent": "Geston-Hosting" },
         });
         if (!r.ok) continue;
         const appJson = (await r.json().catch(() => null)) as { env?: Record<string, EnvEntry> } | null;

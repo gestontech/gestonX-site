@@ -99,7 +99,7 @@ export function SiteIntro() {
         </div>
 
         <div className="text-center space-y-1.5 tx-intro-title">
-          <p className="text-xl font-semibold tracking-tight text-white">GestonX</p>
+          <p className="text-xl font-semibold tracking-tight text-white">GESTONX</p>
           <p className="text-sm text-white/50 max-w-[260px] leading-snug mx-auto">
             Bots, panels and growth tools, spinning up now
           </p>
@@ -108,7 +108,7 @@ export function SiteIntro() {
         <div className="tx-intro-chips">
           <span className="tx-intro-chip" style={{ animationDelay: "120ms" }}>Bots</span>
           <span className="tx-intro-chip" style={{ animationDelay: "260ms" }}>Panels</span>
-          <span className="tx-intro-chip" style={{ animationDelay: "400ms" }}>Bot Hosting</span>
+          <span className="tx-intro-chip" style={{ animationDelay: "400ms" }}>Boosting</span>
           <span className="tx-intro-chip" style={{ animationDelay: "540ms" }}>Dashboard</span>
         </div>
       </div>

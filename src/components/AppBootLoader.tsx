@@ -75,13 +75,13 @@ export function AppBootLoader() {
           user-select: none;
         }
       `}</style>
-      <img src="/logo/icon.png" alt="GestonX" draggable={false} />
+      <img src="/logo/icon.png" alt="GESTONX" draggable={false} />
       <div className="boot-cubes">
         <div className="boot-cube" />
         <div className="boot-cube" />
         <div className="boot-cube" />
       </div>
-      <span className="boot-label">GestonX</span>
+      <span className="boot-label">GESTONX</span>
     </div>
   );
 }

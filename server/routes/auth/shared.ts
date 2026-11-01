@@ -100,14 +100,14 @@ export function userPayload(user: any) {
 export function buildEmailHtml(type: "login" | "signup" | "reset", url: string, username?: string): { subject: string; html: string } {
   const footerLink = CLIENT_URL
     ? `<a href="${CLIENT_URL}" style="color:#6b7280;text-decoration:none">${CLIENT_HOST || CLIENT_URL}</a>`
-    : "GestonX";
+    : "GESTONX";
   const wrap = (body: string) => `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 16px"><tr><td align="center">
 <table width="520" cellpadding="0" cellspacing="0" style="background:#111827;border:1px solid #1f2937;border-radius:16px;overflow:hidden;max-width:520px;width:100%">
 <tr><td style="padding:28px 32px;background:linear-gradient(135deg,#1e1b4b,#0f172a);border-bottom:1px solid #1f2937;text-align:center">
-<span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px"> GestonX</span>
+<span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px"> GESTONX</span>
 </td></tr>
 <tr><td style="padding:36px 32px">${body}</td></tr>
 <tr><td style="padding:20px 32px;border-top:1px solid #1f2937;text-align:center">
@@ -122,9 +122,9 @@ export function buildEmailHtml(type: "login" | "signup" | "reset", url: string, 
 
   if (type === "signup") {
     return {
-      subject: "Bienvenue sur GestonX — Finalisez votre inscription",
+      subject: "Bienvenue sur GESTONX — Finalisez votre inscription",
       html: wrap(`
-        <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#fff">Bienvenue sur GestonX ! 🎉</h1>
+        <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#fff">Bienvenue sur GESTONX ! 🎉</h1>
         <p style="margin:0 0 6px;font-size:15px;color:#9ca3af;line-height:1.6">Merci de vous être inscrit. Vous êtes à une étape de déployer votre premier bot.</p>
         <p style="margin:0 0 28px;font-size:14px;color:#6b7280;line-height:1.6">Cliquez sur le bouton ci-dessous pour vérifier votre e-mail et finaliser la configuration de votre compte. Ce lien expire dans <strong style="color:#9ca3af">15 minutes</strong>.</p>
         <a href="${url}" style="${btnStyle}">Finaliser l'inscription &rarr;</a>
@@ -135,11 +135,11 @@ export function buildEmailHtml(type: "login" | "signup" | "reset", url: string, 
 
   if (type === "reset") {
     return {
-      subject: "Réinitialisez votre mot de passe — GestonX",
+      subject: "Réinitialisez votre mot de passe — GESTONX",
       html: wrap(`
         <h1 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fff">Réinitialiser votre mot de passe</h1>
         ${username ? `<p style="margin:0 0 6px;font-size:14px;color:#6b7280">Bonjour <strong style="color:#9ca3af">@${username}</strong>,</p>` : ""}
-        <p style="margin:0 0 28px;font-size:14px;color:#9ca3af;line-height:1.6">Nous avons reçu une demande de réinitialisation du mot de passe de votre compte GestonX. Cliquez sur le bouton ci-dessous pour définir un nouveau mot de passe. Ce lien expire dans <strong style="color:#d1d5db">30 minutes</strong> et ne peut être utilisé qu'une seule fois.</p>
+        <p style="margin:0 0 28px;font-size:14px;color:#9ca3af;line-height:1.6">Nous avons reçu une demande de réinitialisation du mot de passe de votre compte GESTONX. Cliquez sur le bouton ci-dessous pour définir un nouveau mot de passe. Ce lien expire dans <strong style="color:#d1d5db">30 minutes</strong> et ne peut être utilisé qu'une seule fois.</p>
         <a href="${url}" style="${btnStyle}">Réinitialiser le mot de passe &rarr;</a>
         <p style="margin:28px 0 0;font-size:12px;color:#4b5563;line-height:1.8">Ou copiez ce lien :<br><a href="${url}" style="${linkStyle}">${url}</a></p>
         <p style="margin:16px 0 0;font-size:12px;color:#4b5563">Si vous n'avez pas demandé de réinitialisation, votre mot de passe restera inchangé — aucune action n'est nécessaire.</p>
@@ -148,12 +148,12 @@ export function buildEmailHtml(type: "login" | "signup" | "reset", url: string, 
   }
 
   return {
-    subject: "Votre lien de connexion — GestonX",
+    subject: "Votre lien de connexion — GESTONX",
     html: wrap(`
       <h1 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fff">Votre lien de connexion</h1>
       ${username ? `<p style="margin:0 0 6px;font-size:14px;color:#6b7280">Bonjour <strong style="color:#9ca3af">@${username}</strong>,</p>` : ""}
-      <p style="margin:0 0 28px;font-size:14px;color:#9ca3af;line-height:1.6">Cliquez sur le bouton ci-dessous pour vous connecter à votre compte GestonX. Ce lien expire dans <strong style="color:#d1d5db">15 minutes</strong> et ne peut être utilisé qu'une seule fois.</p>
-      <a href="${url}" style="${btnStyle}">Se connecter à GestonX &rarr;</a>
+      <p style="margin:0 0 28px;font-size:14px;color:#9ca3af;line-height:1.6">Cliquez sur le bouton ci-dessous pour vous connecter à votre compte GESTONX. Ce lien expire dans <strong style="color:#d1d5db">15 minutes</strong> et ne peut être utilisé qu'une seule fois.</p>
+      <a href="${url}" style="${btnStyle}">Se connecter à GESTONX &rarr;</a>
       <p style="margin:28px 0 0;font-size:12px;color:#4b5563;line-height:1.8">Ou copiez ce lien :<br><a href="${url}" style="${linkStyle}">${url}</a></p>
     `),
   };

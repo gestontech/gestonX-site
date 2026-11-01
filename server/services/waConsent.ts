@@ -6,7 +6,7 @@ export const CONSENT_DECLINE_ID = "consent_decline";
 
 export function consentPromptText(): string {
   return (
-    "Welcome to GestonX.\n\n" +
+    "Welcome to GESTONX.\n\n" +
     "To use this assistant we need your consent to process your WhatsApp messages " +
     "for support and service requests.\n\n" +
     "Reply *Accept* to continue, or *Decline* to stop.\n\n" +

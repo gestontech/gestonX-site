@@ -17,11 +17,11 @@ function wrap(body: string): string {
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 16px"><tr><td align="center">
 <table width="520" cellpadding="0" cellspacing="0" style="background:#111827;border:1px solid #1f2937;border-radius:16px;overflow:hidden;max-width:520px;width:100%">
 <tr><td style="padding:28px 32px;background:linear-gradient(135deg,#1e1b4b,#0f172a);border-bottom:1px solid #1f2937;text-align:center">
-<span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px"> GestonX</span>
+<span style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px"> GESTONX</span>
 </td></tr>
 <tr><td style="padding:36px 32px">${body}</td></tr>
 <tr><td style="padding:20px 32px;border-top:1px solid #1f2937;text-align:center">
-<p style="margin:0;font-size:12px;color:#4b5563">Ceci est une notification de service automatique de GestonX.</p>
+<p style="margin:0;font-size:12px;color:#4b5563">Ceci est une notification de service automatique de GESTONX.</p>
 <p style="margin:6px 0 0;font-size:12px;color:#374151">Cordialement, <strong style="color:#9ca3af">Geston</strong> &mdash; GestonTech &middot; <a href="https://hosting.gestontech.online" style="color:#6b7280;text-decoration:none">hosting.gestontech.online</a></p>
 </td></tr>
 </table></td></tr></table>
@@ -31,7 +31,7 @@ function wrap(body: string): string {
 export async function sendBotExpiryEmail(to: string, appName: string, daysLeft: number): Promise<void> {
   const urgency = daysLeft <= 3 ? "⚠️ Urgent :" : "⏰";
   const dayWord = daysLeft !== 1 ? "jours" : "jour";
-  const subject = `${urgency} Votre bot "${appName}" expire dans ${daysLeft} ${dayWord} — GestonX`;
+  const subject = `${urgency} Votre bot "${appName}" expire dans ${daysLeft} ${dayWord} — GESTONX`;
   const btnStyle = `display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-size:15px;font-weight:700`;
   const html = wrap(`
     <h1 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fff">Votre bot expire bientôt</h1>
@@ -43,13 +43,13 @@ export async function sendBotExpiryEmail(to: string, appName: string, daysLeft: 
     <p style="margin:0 0 28px;font-size:14px;color:#6b7280;line-height:1.6">Renouvelez maintenant pour garder votre bot en ligne sans interruption.</p>
     <a href="https://hosting.gestontech.online/mybots" style="${btnStyle}">Renouveler le bot &rarr;</a>
   `);
-  await transporter.sendMail({ from: process.env.SMTP_FROM || '"GestonX" <noreply@gestontech.online>', to, subject, html });
+  await transporter.sendMail({ from: process.env.SMTP_FROM || '"GESTONX" <noreply@gestontech.online>', to, subject, html });
 }
 
 export async function sendPanelExpiryEmail(to: string, planName: string, daysLeft: number): Promise<void> {
   const urgency = daysLeft <= 3 ? "⚠️ Urgent :" : "⏰";
   const dayWord = daysLeft !== 1 ? "jours" : "jour";
-  const subject = `${urgency} Votre panel "${planName}" expire dans ${daysLeft} ${dayWord} — GestonX`;
+  const subject = `${urgency} Votre panel "${planName}" expire dans ${daysLeft} ${dayWord} — GESTONX`;
   const btnStyle = `display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-size:15px;font-weight:700`;
   const html = wrap(`
     <h1 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fff">Votre panel expire bientôt</h1>
@@ -61,7 +61,7 @@ export async function sendPanelExpiryEmail(to: string, planName: string, daysLef
     <p style="margin:0 0 28px;font-size:14px;color:#6b7280;line-height:1.6">Achetez un nouveau plan de panel maintenant pour continuer sans interruption.</p>
     <a href="https://hosting.gestontech.online/services/panels/purchasepanel" style="${btnStyle}">Obtenir un nouveau panel &rarr;</a>
   `);
-  await transporter.sendMail({ from: process.env.SMTP_FROM || '"GestonX" <noreply@gestontech.online>', to, subject, html });
+  await transporter.sendMail({ from: process.env.SMTP_FROM || '"GESTONX" <noreply@gestontech.online>', to, subject, html });
 }
 
 export async function sendOutageRefundEmail(opts: {
@@ -70,7 +70,7 @@ export async function sendOutageRefundEmail(opts: {
   items: Array<{ kind: string; label: string; refundTx: number; remainingDays: number }>;
   siteUrl: string;
 }): Promise<void> {
-  const subject = `Nous sommes désolés — Coins crédités (${opts.totalTx} Coins) — GestonX`;
+  const subject = `Nous sommes désolés — Coins crédités (${opts.totalTx} Coins) — GESTONX`;
   const btnStyle = `display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:10px;text-decoration:none;font-size:15px;font-weight:700`;
   const rows = opts.items
     .map(
@@ -103,7 +103,7 @@ export async function sendOutageRefundEmail(opts: {
   `);
 
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || '"GestonX" <noreply@gestontech.online>',
+    from: process.env.SMTP_FROM || '"GESTONX" <noreply@gestontech.online>',
     to: opts.to,
     subject,
     html,

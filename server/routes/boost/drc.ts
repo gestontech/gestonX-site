@@ -31,7 +31,7 @@ router.post("/order/pay/drc", sessionOrApiKeyGuard, banCheck, requirePaymentMeth
     const phone = normalizeDRCPhone(parsed.data.phone);
     if (!phone) { res.status(400).json({ error: "Enter a valid DR Congo mobile number (e.g. 0997654321)" }); return; }
 
-    const result = await initiateWonyaPayment({ amount, currency, phone, reason: `GestonX: ${order.serviceName}` });
+    const result = await initiateWonyaPayment({ amount, currency, phone, reason: `GESTONX: ${order.serviceName}` });
     if (!result.success || !result.refTransa) {
       res.status(500).json({ error: result.message || "Failed to initiate payment" });
       return;

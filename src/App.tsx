@@ -10,12 +10,15 @@ import { GitHubSuccess } from "@/pages/GitHubSuccess";
 import { ResetPassword } from "@/pages/ResetPassword";
 import { Dashboard } from "@/pages/Dashboard";
 import { Admin } from "@/pages/Admin";
+import TopUp from "@/pages/TopUp";
 import { Profile } from "@/pages/Profile";
 import { Docs } from "@/pages/Docs";
 import { Deploy } from "@/pages/Deploy";
 import { ServicesBots } from "@/pages/ServicesBots";
 import { ServicesPanel } from "@/pages/ServicesPanel";
 import { MyBots } from "@/pages/MyBots";
+import { PurchasePanels } from "@/pages/PurchasePanels";
+import { SocialBoosting } from "@/pages/SocialBoosting";
 import { DeveloperApi } from "@/pages/DeveloperApi";
 import { MyPanels } from "@/pages/MyPanels";
 import { BotDeployPage } from "@/pages/BotDeployPage";
@@ -109,12 +112,15 @@ function AppRoutes() {
         <Route path="/services/panels" element={<ServicesPanel />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+        <Route path="/topup" element={<ProtectedRoute><TopUp /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/report-bug" element={<ProtectedRoute><ReportBug /></ProtectedRoute>} />
         <Route path="/deploy" element={<ProtectedRoute><ServiceGate serviceKey="botDeploy" serviceName="Bot Deployment"><Deploy /></ServiceGate></ProtectedRoute>} />
         <Route path="/mybots" element={<ProtectedRoute><MyBots /></ProtectedRoute>} />
         <Route path="/mypanels" element={<ProtectedRoute><ServiceGate serviceKey="panels" serviceName="My Panels"><MyPanels /></ServiceGate></ProtectedRoute>} />
         <Route path="/services/panels/mypanels" element={<ProtectedRoute><ServiceGate serviceKey="panels" serviceName="My Panels"><MyPanels /></ServiceGate></ProtectedRoute>} />
+        <Route path="/services/panels/purchasepanel" element={<ProtectedRoute><ServiceGate serviceKey="panels" serviceName="Panel Shop"><PurchasePanels /></ServiceGate></ProtectedRoute>} />
+        <Route path="/services/boosting" element={<ProtectedRoute><ServiceGate serviceKey="boost" serviceName="Social Media Boosting"><SocialBoosting /></ServiceGate></ProtectedRoute>} />
         <Route path="/developers" element={<ProtectedRoute><DeveloperApi /></ProtectedRoute>} />
         <Route path="/features" element={<BotFeatures />} />
         <Route path="/botfeatures" element={<BotFeatures />} />
@@ -188,7 +194,7 @@ function MaintenanceGate({ children }: { children: ReactNode }) {
           </div>
           <h1 className="text-2xl font-bold mb-2">Under Maintenance</h1>
           <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-            GestonX is temporarily down for maintenance. We'll be back shortly — please check again in a few minutes.
+            GESTONX is temporarily down for maintenance. We'll be back shortly — please check again in a few minutes.
           </p>
           {user ? (
             <p className="text-xs text-muted-foreground">Logged in as <span className="text-foreground font-medium">{user.email}</span></p>

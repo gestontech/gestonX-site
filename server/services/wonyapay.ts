@@ -53,7 +53,7 @@ export async function initiateWonyaPayment(params: {
       Devise: params.currency,
       Action: "C2B",
       MobileMoney: params.phone,
-      Motif: params.reason || "GestonX payment",
+      Motif: params.reason || "GESTONX payment",
     };
     const callbackUrl = getCallbackUrl();
     if (callbackUrl) body.CallbackUrl = callbackUrl;

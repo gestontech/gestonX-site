@@ -37,7 +37,7 @@ router.post("/order/pay/cameroon", sessionOrApiKeyGuard, banCheck, requirePaymen
       phone,
       email: user.email,
       externalId,
-      message: `GestonX: ${order.serviceName}`,
+      message: `GESTONX: ${order.serviceName}`,
     });
     if (!result.success || !result.transId) {
       res.status(500).json({ error: result.message || "Failed to initiate payment" });

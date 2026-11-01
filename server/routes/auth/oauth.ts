@@ -148,8 +148,8 @@ router.get("/github/callback", async (req: Request, res: Response, next: NextFun
     if (!tokenData.access_token) { res.redirect(`${CLIENT_URL}/login?error=github_token`); return; }
 
     const [profileRes, emailsRes] = await Promise.all([
-      fetch("https://api.github.com/user", { headers: { Authorization: `Bearer ${tokenData.access_token}`, "User-Agent": "GestonX" } }),
-      fetch("https://api.github.com/user/emails", { headers: { Authorization: `Bearer ${tokenData.access_token}`, "User-Agent": "GestonX" } }),
+      fetch("https://api.github.com/user", { headers: { Authorization: `Bearer ${tokenData.access_token}`, "User-Agent": "Geston-Hosting" } }),
+      fetch("https://api.github.com/user/emails", { headers: { Authorization: `Bearer ${tokenData.access_token}`, "User-Agent": "Geston-Hosting" } }),
     ]);
     const profile = await profileRes.json() as any;
     const emails = await emailsRes.json() as any[];

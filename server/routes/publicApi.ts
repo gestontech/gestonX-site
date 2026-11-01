@@ -46,7 +46,7 @@ router.get("/me", apiKeyGuard, async (req: AuthRequest, res) => {
   });
 });
 
-/** List bot templates available on GestonX (names for deploy-by-name). */
+/** List bot templates available on GESTONX (names for deploy-by-name). */
 router.get("/templates", apiKeyGuard, async (_req: AuthRequest, res) => {
   try {
     const templates = await BotTemplate.find({ active: true })
@@ -135,7 +135,7 @@ const deployBody = z.object({
 });
 
 /**
- * Deploy a bot for the API key owner using a GestonX template.
+ * Deploy a bot for the API key owner using a GESTONX template.
  * Pass templateName (preferred) or botTemplateId.
  */
 router.post("/deploy", apiKeyGuard, async (req: AuthRequest, res) => {

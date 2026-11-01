@@ -20,8 +20,17 @@ import { StrictMode, Component } from "react";
   };
 
   (function initThemeAndAccent() {
-    const theme = localStorage.getItem("theme") || "dark";
-    document.documentElement.classList.add(theme);
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    // Theme is intentionally controlled by the phone/browser system setting.
+
+    const applyPhoneTheme = () => {
+      const dark = media.matches;
+      document.documentElement.classList.toggle("dark", dark);
+      document.documentElement.classList.toggle("light", !dark);
+      document.documentElement.style.colorScheme = dark ? "dark" : "light";
+    };
+    applyPhoneTheme();
+    media.addEventListener?.("change", applyPhoneTheme);
 
     // Default site accent: green (never violet/purple)
     let accent = localStorage.getItem("accent") || "green";

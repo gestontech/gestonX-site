@@ -256,7 +256,7 @@ export function Login() {
             <CardDescription>
               {tab === "forgot"
                 ? "Saisissez votre e-mail pour recevoir un lien de réinitialisation"
-                : "Connectez-vous à votre compte GestonX"}
+                : "Connectez-vous à votre compte GESTONX"}
             </CardDescription>
           </CardHeader>
 

@@ -8,7 +8,7 @@ export function StaticLogo({ size = 32 }: { size?: number }) {
   return (
     <img
       src="/logo/icon.png"
-      alt="GestonX"
+      alt="GESTONX"
       width={size}
       height={size}
       draggable={false}
@@ -31,7 +31,7 @@ export function BrandMark({ size = 28 }: { size?: number }) {
 /** Optional soft glow variant (still no solid blue plate). */
 export function StaticLogoGlow({ size = 32 }: { size?: number }) {
   return (
-    <span className="inline-flex items-center justify-center" style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.18))" }}>
+    <span className="inline-flex items-center justify-center" style={{ filter: "drop-shadow(0 0 6px rgba(20,184,166,0.35))" }}>
       <StaticLogo size={size} />
       {/* keep AppLogoIcon path available for tree-shaking parity */}
       <span className="sr-only">

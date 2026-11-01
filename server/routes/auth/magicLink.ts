@@ -81,7 +81,7 @@ router.post("/magic-link/send", authRateLimit, async (req: Request, res: Respons
     const { subject, html } = buildEmailHtml(emailType, linkUrl, existingUser?.username ?? undefined);
 
     await transporter.sendMail({
-      from: process.env.SMTP_FROM || '"GestonX" <noreply@gestontech.online>',
+      from: process.env.SMTP_FROM || '"GESTONX" <noreply@gestontech.online>',
       to: email,
       subject,
       html,
