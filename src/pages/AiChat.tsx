@@ -24,7 +24,7 @@ export function AiChat() {
   const [messages, setMessages] = useState<ChatMsg[]>([
     {
       role: "assistant",
-      text: "Welcome to GESTONX AI support. Ask about Coins top-ups, panel plans, bot deploy, boosting, or payments.",
+      text: "Welcome to GestonX AI support. Ask about bot deployment and panels.",
     },
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);

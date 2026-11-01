@@ -1,4 +1,4 @@
-# GESTONX
+# GestonX
 
 Plateforme d'hébergement de bots WhatsApp avec économie de pièces TX, boutique de panels Pterodactyl, boost de réseaux sociaux et déploiement automatisé.
 
@@ -101,3 +101,7 @@ Au démarrage / seed, le compte admin est créé ou mis à jour avec le mot de p
 ## Licence
 
 Voir [LICENSE](./LICENSE).
+
+
+## GestonX — Dark Liquid Ice Edition
+This edition removes the public payment/top-up and social boosting routes from the frontend and uses a dark liquid-glass/ice visual system. It is intended for free deployment on Vercel. Legacy payment/server modules remain in the repository for compatibility and must be removed server-side if the backend must be payment-free as well.

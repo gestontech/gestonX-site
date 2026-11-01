@@ -19,11 +19,12 @@ const DEFAULT_BOT_LOGO = "https://hosting.gestontech.online/logo/icon.png";
 
 function useTheme() {
   const [theme, setTheme] = useState<"dark" | "light">(() =>
-    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+    (localStorage.getItem("theme") as "dark" | "light") || "dark"
   );
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle("light", theme === "light");
+    localStorage.setItem("theme", theme);
   }, [theme]);
   return { theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
 }
@@ -33,7 +34,7 @@ function AnimatedLogo() {
   return (
     <img
       src="/logo/icon.png"
-      alt="GESTONX"
+      alt="GestonX"
       width={32}
       height={32}
       draggable={false}
@@ -152,7 +153,7 @@ export function ServicesBots() {
               </button>
               <button className="flex items-center gap-2" onClick={() => navigateWithLoader("/")}>
                 <AnimatedLogo />
-                <span className="font-bold text-base">GESTONX</span>
+                <span className="font-bold text-base">GestonX</span>
               </button>
             </div>
             <div className="flex items-center gap-1.5">
@@ -204,7 +205,7 @@ export function ServicesBots() {
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-2.5">
             <AnimatedLogo />
-            <span className="font-bold text-base">GESTONX</span>
+            <span className="font-bold text-base">GestonX</span>
           </div>
           <button
             onClick={() => setNavOpen(false)}

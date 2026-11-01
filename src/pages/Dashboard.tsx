@@ -24,11 +24,12 @@ import { StaticLogo as AnimatedLogo } from "@/components/StaticLogo";
 
 function useTheme() {
   const [theme, setTheme] = useState<"dark" | "light">(() => {
-    return (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    return (localStorage.getItem("theme") as "dark" | "light") || "dark";
   });
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle("light", theme === "light");
+    localStorage.setItem("theme", theme);
   }, [theme]);
   const toggle = () => setTheme(t => t === "dark" ? "light" : "dark");
   return { theme, toggle };
@@ -151,7 +152,7 @@ export function Dashboard() {
 
   const navItems = [
     { label: "Tableau de bord", icon: LayoutDashboard, path: "/dashboard" },
-    { label: "Recharger Coins", icon: CreditCard, path: "/topup" },
+    { label: "Recharger Coins", icon: CreditCard, path: "/dashboard" },
     { label: "Docs", icon: BookOpen, path: "/docs" },
     { label: "Tutoriels", icon: Youtube, path: "/tutorials" },
     { label: "Assistant IA", icon: Sparkles, path: "/ai-chat" },
@@ -185,7 +186,7 @@ export function Dashboard() {
               </button>
               <div className="flex items-center gap-2">
                 <AnimatedLogo />
-                <span className="font-bold text-base">GESTONX</span>
+                <span className="font-bold text-base">GestonX</span>
               </div>
             </div>
             <div className="flex items-center gap-1.5">
@@ -204,7 +205,7 @@ export function Dashboard() {
       {navOpen && <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]" onClick={() => setNavOpen(false)} />}
       <aside className={`fixed top-0 left-0 h-full w-72 bg-card border-r border-border z-[110] transform transition-transform duration-300 ease-out ${navOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between p-4 border-b border-border">
-          <div className="flex items-center gap-2.5"><AnimatedLogo /><span className="font-bold text-base">GESTONX</span></div>
+          <div className="flex items-center gap-2.5"><AnimatedLogo /><span className="font-bold text-base">GestonX</span></div>
           <button onClick={() => setNavOpen(false)} className="p-2 rounded-lg hover:bg-muted" aria-label="Fermer le menu"><X className="w-4 h-4" /></button>
         </div>
         <div className="p-4 flex flex-col h-[calc(100%-65px)] overflow-y-auto">
@@ -212,8 +213,8 @@ export function Dashboard() {
             <p className="text-xs text-muted-foreground mb-0.5">Connecté en tant que</p>
             <p className="text-sm font-semibold truncate">{user.username ? `@${user.username}` : user.email}</p>
             <div className="mt-2 flex items-center gap-1.5">
-              <Coins className="w-3.5 h-3.5 text-teal-400" />
-              <span className="text-sm font-bold text-teal-400">Solde : {user.txCoins} Coins</span>
+              <Coins className="w-3.5 h-3.5 text-zinc-400" />
+              <span className="text-sm font-bold text-zinc-400">Solde : {user.txCoins} Coins</span>
             </div>
           </div>
           <nav className="space-y-0.5 flex-1">
@@ -227,13 +228,13 @@ export function Dashboard() {
               <p className="px-3 text-[10px] font-semibold text-muted-foreground/60 uppercase tracking-wider mb-1">Services</p>
               <button onClick={() => { navigateWithLoader("/services/bots"); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"><div className="flex items-center gap-2.5"><Bot className="w-4 h-4" />Déploiement de bot</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
               <button onClick={() => { navigateWithLoader("/services/panels"); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"><div className="flex items-center gap-2.5"><Server className="w-4 h-4" />Panels</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
-              <button onClick={() => { navigateWithLoader("/services/boosting"); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"><div className="flex items-center gap-2.5"><TrendingUp className="w-4 h-4" />Boost réseaux sociaux</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
+              <button onClick={() => { navigateWithLoader("/features"); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"><div className="flex items-center gap-2.5"><TrendingUp className="w-4 h-4" />Boost réseaux sociaux</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
               <button onClick={() => { navigateWithLoader("/developers"); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"><div className="flex items-center gap-2.5"><Code2 className="w-4 h-4" />API développeur</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
             </div>
             <button onClick={() => { setReferralOpen(true); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"><div className="flex items-center gap-2.5"><Users className="w-4 h-4" />Parrainer & gagner</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
             <button onClick={() => { setCouponOpen(true); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-all"><div className="flex items-center gap-2.5"><Gift className="w-4 h-4" />Code promo</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
             {isAdmin && (
-              <button onClick={() => { navigateWithLoader("/admin"); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-amber-400 hover:bg-amber-500/10 transition-all"><div className="flex items-center gap-2.5"><Shield className="w-4 h-4" />Panneau admin</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
+              <button onClick={() => { navigateWithLoader("/admin"); setNavOpen(false); }} className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-400 hover:bg-zinc-500/10 transition-all"><div className="flex items-center gap-2.5"><Shield className="w-4 h-4" />Panneau admin</div><ChevronRight className="w-3.5 h-3.5 opacity-40" /></button>
             )}
           </nav>
           <div className="space-y-0.5 border-t border-border pt-3 mt-3">
@@ -251,55 +252,50 @@ export function Dashboard() {
             <p className="text-sm text-muted-foreground mt-1">Content de vous revoir</p>
           </div>
           <div className="flex gap-2 flex-wrap">
-            {!isAdmin && (<Button variant="outline" size="sm" onClick={() => navigateWithLoader("/topup")} className="hidden sm:flex border-teal-500/30 text-teal-400 hover:bg-teal-500/10"><CreditCard className="w-4 h-4 mr-1" />Recharger</Button>)}
+            {!isAdmin && (<Button variant="outline" size="sm" onClick={() => navigateWithLoader("/dashboard")} className="hidden sm:flex border-zinc-500/30 text-zinc-400 hover:bg-zinc-500/10"><CreditCard className="w-4 h-4 mr-1" />Recharger</Button>)}
             <Button variant="outline" size="sm" onClick={() => setReferralOpen(true)} className="hidden sm:flex"><Users className="w-4 h-4 mr-1" />Parrainer & gagner</Button>
             <Button variant="outline" size="sm" onClick={() => setCouponOpen(true)} className="hidden sm:flex"><Gift className="w-4 h-4 mr-1" />Code promo</Button>
             <button onClick={handleRefresh} disabled={refreshing || loading} className="p-2 rounded-lg border border-border hover:bg-muted disabled:opacity-50" aria-label="Actualiser">
-              <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin text-teal-400" : "text-muted-foreground"}`} />
+              <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin text-zinc-400" : "text-muted-foreground"}`} />
             </button>
           </div>
         </div>
 
         <div className="flex sm:hidden gap-2 mb-4 flex-wrap">
-          {!isAdmin && (<Button variant="outline" size="sm" onClick={() => navigateWithLoader("/topup")} className="border-teal-500/30 text-teal-400"><CreditCard className="w-4 h-4 mr-1" />Recharger</Button>)}
+          {!isAdmin && (<Button variant="outline" size="sm" onClick={() => navigateWithLoader("/dashboard")} className="border-zinc-500/30 text-zinc-400"><CreditCard className="w-4 h-4 mr-1" />Recharger</Button>)}
           <Button variant="outline" size="sm" className="flex-1" onClick={() => setReferralOpen(true)}><Users className="w-4 h-4 mr-1" />Parrainer & gagner</Button>
           <Button variant="outline" size="sm" className="flex-1" onClick={() => setCouponOpen(true)}><Gift className="w-4 h-4 mr-1" />Code promo</Button>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-6 sm:grid-cols-4">
-          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/topup")} className="rounded-xl border border-border bg-card p-4 col-span-2 cursor-pointer hover:border-green-500/40 hover:bg-green-500/5 transition-colors">
-            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center"><Coins className="w-4 h-4 text-green-400" /></div><span className="text-xs text-muted-foreground font-medium">Solde Coins</span></div>
-            <p className="text-2xl font-bold text-teal-400">{user.txCoins} Coins</p>
-            <span className="mt-2 inline-block text-xs text-green-400 font-medium">Recharger →</span>
+          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/dashboard")} className="rounded-xl border border-border bg-card p-4 col-span-2 cursor-pointer hover:border-zinc-500/40 hover:bg-zinc-500/5 transition-colors">
+            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-zinc-500/10 flex items-center justify-center"><Coins className="w-4 h-4 text-zinc-400" /></div><span className="text-xs text-muted-foreground font-medium">Solde Coins</span></div>
+            <p className="text-2xl font-bold text-zinc-400">{user.txCoins} Coins</p>
+            <span className="mt-2 inline-block text-xs text-zinc-400 font-medium">Recharger →</span>
           </div>
-          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/services/bots")} className="rounded-xl border border-border bg-card p-4 cursor-pointer hover:border-teal-500/40 hover:bg-teal-500/5 transition-colors">
-            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center"><Bot className="w-4 h-4 text-teal-400" /></div><span className="text-xs text-muted-foreground font-medium">Bots</span></div>
+          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/services/bots")} className="rounded-xl border border-border bg-card p-4 cursor-pointer hover:border-zinc-500/40 hover:bg-zinc-500/5 transition-colors">
+            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-zinc-500/10 flex items-center justify-center"><Bot className="w-4 h-4 text-zinc-400" /></div><span className="text-xs text-muted-foreground font-medium">Bots</span></div>
             <p className="text-2xl font-bold">{bots.length}</p>
-            <span className="mt-2 inline-block text-xs text-teal-400 font-medium">Déployer/Gérer →</span>
+            <span className="mt-2 inline-block text-xs text-zinc-400 font-medium">Déployer/Gérer →</span>
           </div>
-          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/services/panels")} className="rounded-xl border border-border bg-card p-4 cursor-pointer hover:border-blue-500/40 hover:bg-blue-500/5 transition-colors">
-            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center"><Server className="w-4 h-4 text-blue-400" /></div><span className="text-xs text-muted-foreground font-medium">Panels</span></div>
+          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/services/panels")} className="rounded-xl border border-border bg-card p-4 cursor-pointer hover:border-zinc-500/40 hover:bg-zinc-500/5 transition-colors">
+            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-zinc-500/10 flex items-center justify-center"><Server className="w-4 h-4 text-zinc-400" /></div><span className="text-xs text-muted-foreground font-medium">Panels</span></div>
             <p className="text-2xl font-bold">{panels.length}</p>
-            <span className="mt-2 inline-block text-xs text-blue-400 font-medium">Acheter/Gérer →</span>
+            <span className="mt-2 inline-block text-xs text-zinc-400 font-medium">Acheter/Gérer →</span>
           </div>
-          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/services/boosting")} className="rounded-xl border border-border bg-card p-4 col-span-2 sm:col-span-1 cursor-pointer hover:border-pink-500/40 hover:bg-pink-500/5 transition-colors">
-            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center"><TrendingUp className="w-4 h-4 text-pink-400" /></div><span className="text-xs text-muted-foreground font-medium">Boost</span></div>
-            <p className="text-2xl font-bold">Réseaux sociaux</p>
-            <span className="mt-2 inline-block text-xs text-pink-400 font-medium">Découvrir →</span>
-          </div>
-          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/tutorials")} className="rounded-xl border border-border bg-card p-4 col-span-2 sm:col-span-1 cursor-pointer hover:border-amber-500/40 hover:bg-amber-500/5 transition-colors">
-            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center"><Youtube className="w-4 h-4 text-amber-400" /></div><span className="text-xs text-muted-foreground font-medium">Tutoriels</span></div>
+          <div role="button" tabIndex={0} onClick={() => navigateWithLoader("/tutorials")} className="rounded-xl border border-border bg-card p-4 col-span-2 sm:col-span-1 cursor-pointer hover:border-zinc-500/40 hover:bg-zinc-500/5 transition-colors">
+            <div className="flex items-center gap-2 mb-2"><div className="w-8 h-8 rounded-lg bg-zinc-500/10 flex items-center justify-center"><Youtube className="w-4 h-4 text-zinc-400" /></div><span className="text-xs text-muted-foreground font-medium">Tutoriels</span></div>
             <p className="text-2xl font-bold">Guides</p>
-            <span className="mt-2 inline-block text-xs text-amber-400 font-medium">Regarder →</span>
+            <span className="mt-2 inline-block text-xs text-zinc-400 font-medium">Regarder →</span>
           </div>
         </div>
 
         {deployingAppName && (
-          <div className="mb-4 p-4 rounded-xl border border-teal-500/30 bg-teal-500/10 flex items-center gap-3">
-            <Loader2 className="w-5 h-5 text-teal-400 animate-spin shrink-0" />
+          <div className="mb-4 p-4 rounded-xl border border-zinc-500/30 bg-zinc-500/10 flex items-center gap-3">
+            <Loader2 className="w-5 h-5 text-zinc-400 animate-spin shrink-0" />
             <div>
-              <p className="text-sm font-semibold text-teal-300">Déploiement du bot en cours...</p>
-              <p className="text-xs text-teal-400/80"><span className="font-mono">{deployingAppName}</span> est en cours de construction.</p>
+              <p className="text-sm font-semibold text-zinc-300">Déploiement du bot en cours...</p>
+              <p className="text-xs text-zinc-400/80"><span className="font-mono">{deployingAppName}</span> est en cours de construction.</p>
             </div>
           </div>
         )}
@@ -310,7 +306,7 @@ export function Dashboard() {
           <>
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-semibold text-base">Bots récents</h2>
-              <button onClick={() => navigateWithLoader("/mybots")} className="text-xs text-teal-400 hover:underline font-medium">Tout voir →</button>
+              <button onClick={() => navigateWithLoader("/mybots")} className="text-xs text-zinc-400 hover:underline font-medium">Tout voir →</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 min-w-0">
               {bots.slice(0, 4).map(bot => (
@@ -324,13 +320,13 @@ export function Dashboard() {
 
         <div className="mt-8 mb-4 p-5 rounded-2xl border border-border bg-card/50">
           <p className="text-sm font-semibold mb-1">Vous cherchez autre chose ?</p>
-          <p className="text-xs text-muted-foreground mb-4">Boostez vos réseaux, vos panels, ou déployez un autre bot.</p>
+          <p className="text-xs text-muted-foreground mb-4">Gérez vos panels ou déployez un autre bot.</p>
           <div className="flex flex-wrap gap-2">
-            <button onClick={() => navigateWithLoader("/services/boosting")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-pink-500/30 bg-pink-500/10 text-pink-300 text-xs font-semibold"><TrendingUp className="w-3.5 h-3.5" />Boost réseaux sociaux</button>
-            <button onClick={() => navigateWithLoader("/services/panels")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-semibold"><Server className="w-3.5 h-3.5" />Panels Pterodactyl</button>
-            <button onClick={() => navigateWithLoader("/services/bots")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-semibold"><Bot className="w-3.5 h-3.5" />Déploiement de bot</button>
-            <button onClick={() => navigateWithLoader("/ai-chat")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-green-500/30 bg-green-500/10 text-green-300 text-xs font-semibold"><Sparkles className="w-3.5 h-3.5" />Assistant IA</button>
-            <button onClick={() => navigateWithLoader("/tutorials")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-semibold"><Youtube className="w-3.5 h-3.5" />Tutoriels</button>
+            <button onClick={() => navigateWithLoader("/features")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-500/30 bg-zinc-500/10 text-zinc-300 text-xs font-semibold"><TrendingUp className="w-3.5 h-3.5" />Boost réseaux sociaux</button>
+            <button onClick={() => navigateWithLoader("/services/panels")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-500/30 bg-zinc-500/10 text-zinc-300 text-xs font-semibold"><Server className="w-3.5 h-3.5" />Panels Pterodactyl</button>
+            <button onClick={() => navigateWithLoader("/services/bots")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-500/30 bg-zinc-500/10 text-zinc-300 text-xs font-semibold"><Bot className="w-3.5 h-3.5" />Déploiement de bot</button>
+            <button onClick={() => navigateWithLoader("/ai-chat")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-500/30 bg-zinc-500/10 text-zinc-300 text-xs font-semibold"><Sparkles className="w-3.5 h-3.5" />Assistant IA</button>
+            <button onClick={() => navigateWithLoader("/tutorials")} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-500/30 bg-zinc-500/10 text-zinc-300 text-xs font-semibold"><Youtube className="w-3.5 h-3.5" />Tutoriels</button>
           </div>
         </div>
 
@@ -354,7 +350,7 @@ export function Dashboard() {
                       }[t.type] || t.type.replace(/_/g, " ")}</p>
                       <p className="text-xs text-muted-foreground">{new Date(t.createdAt).toLocaleDateString()}</p>
                     </div>
-                    <span className={`text-sm font-bold ${isCredit ? "text-green-400" : "text-red-400"}`}>{isCredit ? "+" : "-"}{Math.abs(t.txAmount)} Coins</span>
+                    <span className={`text-sm font-bold ${isCredit ? "text-zinc-400" : "text-red-400"}`}>{isCredit ? "+" : "-"}{Math.abs(t.txAmount)} Coins</span>
                   </div>
                 );
               })}

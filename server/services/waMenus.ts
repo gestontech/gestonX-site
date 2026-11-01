@@ -35,14 +35,14 @@ export function menuIntroText(isAdmin: boolean): string {
 
   if (isAdmin) {
     return (
-      "GESTONX — Admin menu\n\n" +
+      "GestonX — Admin menu\n\n" +
       "Reply with a number or type a command.\n" +
       "Admin extras: flags, disable, enable" +
       askAnything
     );
   }
   return (
-    "GESTONX\n\n" +
+    "GestonX\n\n" +
     "Reply with a number or type:\n" +
     "plans · buy · boost · help · contact" +
     askAnything

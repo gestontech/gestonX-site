@@ -1,4 +1,4 @@
-# Contribuer à GESTONX
+# Contribuer à GestonX
 
 ## Démarrage
 

@@ -16,7 +16,7 @@ export function startBot(): void {
     const dev = digitsOnly(process.env.DEV_WA_NUMBER || "");
     if (!dev || dev.length < 8) return;
     const jid = dev + "@s.whatsapp.net";
-    await sendWaText(jid, "🚨 GESTONX alert\n\n" + msg).catch(() => {});
+    await sendWaText(jid, "🚨 GestonX alert\n\n" + msg).catch(() => {});
   });
 
   const ownerId = String(process.env.BOT_OWNER_ID || "").trim();

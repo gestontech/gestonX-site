@@ -1,6 +1,6 @@
 export const DEV_NAME = process.env.DEV_NAME || "Geston";
 export const DEV_CONTACT = (process.env.DEV_WA_NUMBER || "243993030390").replace(/\D/g, "");
-export const BRAND_NAME = process.env.BRAND_NAME || "GESTONX";
+export const BRAND_NAME = process.env.BRAND_NAME || "GestonX";
 
 export interface PricingSnapshot {
   kshPerTx: number;

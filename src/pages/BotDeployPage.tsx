@@ -147,7 +147,7 @@ export function BotDeployPage() {
         try {
           const r = await fetch(
             `https://raw.githubusercontent.com/${owner}/${cleanRepo}/${branch}/app.json`,
-            { headers: { Accept: "application/json", "User-Agent": "Geston-Hosting" } }
+            { headers: { Accept: "application/json", "User-Agent": "GestonX" } }
           );
           if (r.ok) {
             appJson = await r.json();

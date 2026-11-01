@@ -37,7 +37,7 @@ const DEFAULT_BAD_WORDS = [
   "jackass",
 ];
 
-/** Directed insults at the bot / AI / GESTONX */
+/** Directed insults at the bot / AI / GestonX */
 const BOT_INSULT_PATTERNS: RegExp[] = [
   /\b(stupid|dumb|useless|trash|garbage|idiot|moron|scam|scammer)\s+(bot|ai|assistant)?\b/i,
   /\b(bot|ai|assistant|you)\s+(are|is)\s+(stupid|dumb|useless|trash|garbage|idiot|scam)\b/i,

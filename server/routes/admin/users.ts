@@ -130,7 +130,7 @@ router.post("/users/:id/moderator", async (req: Request, res: Response, next: Ne
       await user.save();
       await Transaction.create({ userId: user._id, type: "admin_grant", txAmount: 100, ksAmount: 0, status: "success" });
       const { createNotification } = await import("../../services/notifications.js");
-      await createNotification(user._id, "general", "You've been promoted to Moderator!", "Congratulations! You now have moderator status on GESTONX. You've received 100 Coins as a welcome bonus.").catch(() => {});
+      await createNotification(user._id, "general", "You've been promoted to Moderator!", "Congratulations! You now have moderator status on GestonX. You've received 100 Coins as a welcome bonus.").catch(() => {});
     } else {
       await user.save();
     }

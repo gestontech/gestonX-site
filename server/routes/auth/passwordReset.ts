@@ -48,7 +48,7 @@ router.post("/forgot-password", authRateLimit, async (req: Request, res: Respons
     const { subject, html } = buildEmailHtml("reset", resetUrl, user.username ?? undefined);
 
     await transporter.sendMail({
-      from: process.env.SMTP_FROM || '"GESTONX" <noreply@gestontech.online>',
+      from: process.env.SMTP_FROM || '"GestonX" <noreply@gestontech.online>',
       to: email,
       subject,
       html,

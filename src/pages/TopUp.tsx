@@ -30,7 +30,7 @@ export default function TopUp() {
             const res = await placeBoostOrder(order);
             if (res.ok) {
               showToast("Commande de boost passée !", "success");
-              navigateWithLoader("/services/boosting?tab=orders");
+              navigateWithLoader("/dashboard");
             } else if (res.error) {
               showToast(res.error, "error");
             }

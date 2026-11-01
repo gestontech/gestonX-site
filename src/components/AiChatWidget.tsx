@@ -27,7 +27,7 @@ export function AiChatWidget() {
   const [messages, setMessages] = useState<ChatMsg[]>([
     {
       role: "assistant",
-      text: "Hi — I'm the GESTONX AI agent. Ask about panels, bots, boosting, or payments.",
+      text: "Hi — I'm the GestonX AI agent. Ask about panels and bot hosting.",
     },
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);

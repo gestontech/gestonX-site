@@ -1,7 +1,7 @@
 /**
  * T_NUMBERS — comma-separated WhatsApp numbers (digits + country code)
  * that may use unrestricted AI (any topic) while still identifying as
- * the GESTONX assistant. Not owner/dev privileges — topic bypass only.
+ * the GestonX assistant. Not owner/dev privileges — topic bypass only.
  */
 
 function digitsOnly(s: string): string {

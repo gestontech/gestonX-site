@@ -17,11 +17,12 @@ import {
 
 function useTheme() {
   const [theme, setTheme] = useState<"dark" | "light">(() =>
-    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+    (localStorage.getItem("theme") as "dark" | "light") || "dark"
   );
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle("light", theme === "light");
+    localStorage.setItem("theme", theme);
   }, [theme]);
   return { theme, toggle: () => setTheme(t => t === "dark" ? "light" : "dark") };
 }
@@ -106,7 +107,7 @@ export function Tutorials() {
                 <Menu className="w-5 h-5" />
               </button>
               <button className="flex items-center gap-2" onClick={() => navigateWithLoader("/")}>
-                <AnimatedLogo /><span className="font-bold text-base">GESTONX</span>
+                <AnimatedLogo /><span className="font-bold text-base">GestonX</span>
               </button>
             </div>
             <div className="flex items-center gap-1.5">
@@ -131,7 +132,7 @@ export function Tutorials() {
       {navOpen && <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]" onClick={() => setNavOpen(false)} />}
       <aside className={`fixed top-0 left-0 h-full w-72 bg-card border-r border-border z-[110] transform transition-transform duration-300 ease-out ${navOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between p-4 border-b border-border">
-          <div className="flex items-center gap-2.5"><AnimatedLogo /><span className="font-bold text-base">GESTONX</span></div>
+          <div className="flex items-center gap-2.5"><AnimatedLogo /><span className="font-bold text-base">GestonX</span></div>
           <button onClick={() => setNavOpen(false)} className="p-2 rounded-lg hover:bg-muted transition-colors"><X className="w-4 h-4" /></button>
         </div>
         <div className="p-4 flex flex-col h-[calc(100%-65px)] overflow-y-auto">
@@ -212,7 +213,7 @@ export function Tutorials() {
           </button>
           <div>
             <h1 className="text-2xl font-bold">Tutoriels</h1>
-            <p className="text-sm text-muted-foreground mt-0.5">Guides vidéo pas à pas pour tout ce qui concerne GESTONX</p>
+            <p className="text-sm text-muted-foreground mt-0.5">Guides vidéo pas à pas pour tout ce qui concerne GestonX</p>
           </div>
         </div>
 

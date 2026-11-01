@@ -379,7 +379,7 @@ export function BotFeatures() {
           <div>
             <p className="font-semibold text-sm mb-1">Avertissement</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              GESTONX fournit un support exclusivement pour <span className="text-foreground font-medium">Geston-MD</span>.
+              GestonX fournit un support exclusivement pour <span className="text-foreground font-medium">Geston-MD</span>.
               Pour les autres bots WhatsApp, nous ne pouvons pas fournir d'assistance car nous ne les possédons ni ne les maintenons.
               Les commandes et fonctionnalités présentées ici s'appliquent spécifiquement à Geston-MD.
             </p>

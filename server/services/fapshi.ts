@@ -35,7 +35,7 @@ export async function initiateFapshiPayment(params: {
         amount: params.amount,
         externalId: params.externalId,
         redirectUrl: params.redirectUrl || "",
-        message: params.message || "GESTONX Top-up"
+        message: params.message || "GestonX Top-up"
       })
     });
     const data = await res.json() as { status?: number; link?: string; transId?: string; message?: string };
@@ -70,7 +70,7 @@ export async function initiateFapshiDirectPay(params: {
         name: params.name || "",
         email: params.email || "",
         externalId: params.externalId,
-        message: params.message || "GESTONX Top-up"
+        message: params.message || "GestonX Top-up"
       })
     });
     let data: { transId?: string; message?: string } = {};

@@ -43,7 +43,7 @@ export function TutorialOverlay({ userId, onClose }: TutorialOverlayProps) {
         <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}`}</style>
 
         <div className="p-5 border-b border-border flex items-center justify-between">
-          <h3 className="font-bold text-base">Welcome to GESTONX! 🎉</h3>
+          <h3 className="font-bold text-base">Welcome to GestonX! 🎉</h3>
           <button onClick={handleSkip} className="p-1.5 rounded-lg hover:bg-muted transition-colors text-muted-foreground">
             <X className="w-4 h-4" />
           </button>

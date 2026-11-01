@@ -3,7 +3,7 @@ interface AppLogoProps {
 }
 
 /**
- * The real GESTONX mark (the blue "T/H" swoosh), exported on a
+ * The real GestonX mark (the blue "T/H" swoosh), exported on a
  * transparent background. Any size/utility classes (w-*, h-*, drop-shadow-*,
  * etc.) still apply normally since it's rendered as an <img>. Color utility
  * classes like `text-primary` are harmless no-ops kept for backwards
@@ -27,20 +27,18 @@ export function AppLogoFull({ className = "" }: { className?: string }) {
       <AppLogoIcon className="w-7 h-7" />
       <span className="font-bold tracking-tight text-foreground">
         Geston{" "}
-        <span className="bg-gradient-to-r from-blue-400 to-sky-300 bg-clip-text text-transparent">
-          Hosting
-        </span>
+        <span className="text-white">X</span>
       </span>
     </span>
   );
 }
 
-/** The full lockup artwork (icon + "GESTON HOSTING" wordmark) as one image. */
+/** The full lockup artwork (icon + "GESTONX" wordmark) as one image. */
 export function AppLogoLockup({ className = "h-16" }: { className?: string }) {
   return (
     <img
       src="/logo/logo-full.png"
-      alt="GESTONX"
+      alt="GestonX"
       draggable={false}
       className={`${className} object-contain select-none`}
     />

@@ -53,7 +53,7 @@ export async function fetchAppJson(repoUrl: string): Promise<{ imageUrl: string 
         const rawUrl = `https://raw.githubusercontent.com/${owner}/${cleanRepo}/${branch}/app.json`;
         const res = await fetch(rawUrl, {
           signal: AbortSignal.timeout(8000),
-          headers: { Accept: "application/json", "User-Agent": "Geston-Hosting" },
+          headers: { Accept: "application/json", "User-Agent": "GestonX" },
         });
         if (!res.ok) continue;
         const data = (await res.json()) as { logo?: string; image?: string; icon?: string };

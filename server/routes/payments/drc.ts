@@ -37,7 +37,7 @@ router.post("/initiate-drc", authGuard, banCheck, requirePaymentMethod("drc"), p
     const user = await User.findById(req.user!._id);
     if (!user) { res.status(404).json({ error: "User not found" }); return; }
 
-    const result = await initiateWonyaPayment({ amount, currency, phone, reason: `GESTONX: ${totalTx} Coins top-up` });
+    const result = await initiateWonyaPayment({ amount, currency, phone, reason: `GestonX: ${totalTx} Coins top-up` });
     if (!result.success || !result.refTransa) {
       res.status(500).json({ error: result.message || "Failed to initiate payment" });
       return;
